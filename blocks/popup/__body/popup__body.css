@@ -1,0 +1,11 @@
+.popup__wrapper {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+  color: #000000;
+  box-sizing: border-box;
+  z-index: 3;
+  position: relative;
+  border-radius: 10px;
+}
