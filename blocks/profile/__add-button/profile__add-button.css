@@ -1,8 +1,7 @@
 .profile__add-button {
-  background-image: url(../../../images/Rectangle.svg);
+  background-image: url(../../../images/plus.svg);
   background-position: center;
   background-repeat: no-repeat;
-  position: relative;
   width: 150px;
   height: 50px;
   background-color: transparent;
