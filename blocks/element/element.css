@@ -1,0 +1,15 @@
+.element {
+  grid-template-areas:
+    "image image"
+    "description description";
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: #ffffff;
+  height: 361px;
+  width: 282px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 240px 42px;
+  grid-template-rows: 282px;
+}

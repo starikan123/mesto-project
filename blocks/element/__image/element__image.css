@@ -5,4 +5,5 @@
   border-top-right-radius: 10px;
   object-fit: cover;
   display: block;
+  grid-area: image;
 }

@@ -21,110 +21,114 @@
           />
           <div class="profile__info">
             <div class="profile__button">
-              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <h1 class="profile__name" id="profile__name">Жак-Ив Кусто</h1>
               <button class="profile__edit-button" type="button"></button>
             </div>
-            <p class="profile__description">Исследователь океана</p>
+            <p class="profile__description" id="profile__description">
+              Исследователь океана
+            </p>
           </div>
         </div>
         <button type="button" class="profile__add-button"></button>
       </section>
-      <section class="elements">
-        <article class="element">
-          <img
-            class="element__image"
-            src="./images/kirill-pershin-1088404-unsplash.jpg"
-            alt="Черкесия"
-          />
-          <div class="element__description">
-            <h2 class="element__info">Карачевск</h2>
-            <button class="element__like-button" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            class="element__image"
-            src="./images/kirill-pershin-1404681-unsplash.png"
-            alt="Гора Эльбрус"
-          />
-          <div class="element__description">
-            <h2 class="element__info">Гора Эльбрус</h2>
-            <button class="element__like-button" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            class="element__image"
-            src="./images/kirill-pershin-1556355-unsplash.png"
-            alt="Горны в районе Домбая"
-          />
-          <div class="element__description">
-            <h2 class="element__info">Домбай</h2>
-            <button class="element__like-button" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            class="element__image"
-            src="./images/kirill-pershin-1404681-unsplash.png"
-            alt="Гора Эльбрус"
-          />
-          <div class="element__description">
-            <h2 class="element__info">Гора Эльбрус</h2>
-            <button class="element__like-button" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            class="element__image"
-            src="./images/kirill-pershin-1556355-unsplash.png"
-            alt="Горны в районе Домбая"
-          />
-          <div class="element__description">
-            <h2 class="element__info">Домбай</h2>
-            <button class="element__like-button" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            class="element__image"
-            src="./images/kirill-pershin-1088404-unsplash.jpg"
-            alt="Черкесия"
-          />
-          <div class="element__description">
-            <h2 class="element__info">Карачаево-Ч...</h2>
-            <button class="element__like-button" type="button"></button>
-          </div>
-        </article>
-      </section>
+      <ul class="elements">
+        
+      </ul>
     </main>
     <footer class="footer">
       <p class="footer__description">&copy;&nbsp;2022 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_profile-edit">
       <div class="popup__wrapper">
-        <form class="popup__form" action="#" name="profile">
+        <form
+          class="popup__form"
+          id="popupProfileEditForm"
+          action="#"
+          name="profile"
+        >
           <h2 class="popup__title">Редактировать профиль</h2>
           <fieldset class="popup__form-fields">
             <input
               class="popup__form-field"
               type="text"
-              name="profile-name"
-              id="profile__name"
+              name="profile-name-input"
+              id="profile__name-input"
               placeholder="Ваше имя"
             />
             <input
               class="popup__form-field"
               type="text"
-              name="profile-bio"
-              id="profile-bio"
+              name="profile__description-input"
+              id="profile__description-input"
               placeholder="чем занимаетесь"
             />
           </fieldset>
-          <button class="popup__save-button" type="submit">Сохранить</button>
+          <button class="popup__button" type="submit">Сохранить</button>
         </form>
-        <button class="popup__close-button" type="button"></button>
+        <button
+          class="popup__close-button"
+          id="closePopupEdit"
+          type="button"
+        ></button>
       </div>
     </div>
+    <div class="popup popup_card-add">
+      <div class="popup__wrapper">
+        <form
+          class="popup__form"
+          id="popupProfileAddButton"
+          action="#"
+          name="profile"
+        >
+          <h2 class="popup__title">Новое место</h2>
+          <fieldset class="popup__form-fields">
+            <input
+              class="popup__form-field"
+              type="text"
+              name="placeName-input"
+              id="placeName-input"
+              placeholder="Название"
+            />
+            <input
+              class="popup__form-field"
+              type="url"
+              name="placeUrl-input"
+              id="placeUrl-input"
+              placeholder="Ссылка на картинку"
+            />
+          </fieldset>
+          <button class="popup__button" id="addCardSubmitBtn" type="submit">
+            Создать
+          </button>
+        </form>
+        <button
+          class="popup__close-button"
+          id="closePopupAdd"
+          type="button"
+        ></button>
+      </div>
+    </div>
+    <div class="popup popup_image-zoom">
+      <div class=" popup__figure-container">
+        <figure class="popup__figure">
+          <img src="#" class="popup__image" alt="#">
+          <figcaption class="popup__caption"></figcaption>
+        </figure>
+        <button type="button" id="closePopupImgZoom" class="popup__close-button"></button>
+      </div>
+      <template id="card-template">
+        <li class="element">
+          <img
+            class="element__image"
+            src="#"
+          />
+          <div class="element__description">
+            <h2 class="element__info"></h2>
+            <button class="element__like-button" type="button"></button>
+          </div>
+          <button class="element__delete-button"></button>
+        </li>
+      </template>
+    <script src="./pages/index.js"></script>
   </body>
 </html>
