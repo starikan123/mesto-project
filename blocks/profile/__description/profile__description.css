@@ -6,6 +6,9 @@
   line-height: 22px;
   color: #fff;
   max-width: 336px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 @media screen and (min-width: 320px) and (max-width: 1024px) {
   .profile__description {

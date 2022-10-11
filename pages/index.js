@@ -53,8 +53,18 @@ const elementLikeButtonActive = document.querySelectorAll(
 const elementRemoveButton = document.querySelectorAll(
   ".element__delete-button"
 );
-
+const descriptionAddForm = popupAdd.querySelector(
+  ".popup__form-field[name=placeName-input]"
+);
+const linkAddForm = popupAdd.querySelector(
+  ".popup__form-field[name=placeUrl-input]"
+);
 const addCardSubmitBtn = document.querySelector("#addCardSubmitBtn");
+const closeButtons = document.querySelectorAll(".popup__close-button");
+closeButtons.forEach((button) => {
+  const popup = button.closest(".popup");
+  button.addEventListener("click", () => closePopup(popup));
+});
 function loadCards() {
   initialCards.forEach((card) =>
     elements.prepend(addCard(card.name, card.link))
@@ -77,23 +87,16 @@ profileEditButton.addEventListener("click", function () {
   nameInput.value = inputName.innerText;
   jobInput.value = inputDescription.innerText;
 });
-popupProfileEditForm.addEventListener("submit", function (evt) {
+formElementEdit.addEventListener("submit", function (evt) {
   evt.preventDefault();
   inputName.innerText = nameInput.value;
   inputDescription.innerText = jobInput.value;
-  nameInput.value = "";
-  jobInput.value = "";
   closePopup(popupEdit);
+  formElementEdit.reset();
 });
 
-popupCloseButtonEdit.addEventListener("click", function () {
-  closePopup(popupEdit);
-});
 profileAddButton.addEventListener("click", function () {
   openPopup(popupAdd);
-});
-popupCloseButtonAdd.addEventListener("click", function () {
-  closePopup(popupAdd);
 });
 
 function addCard(name, link) {
@@ -115,9 +118,6 @@ function addCard(name, link) {
     popupImage.alt = `Фото ${name}`;
     popupCaption.textContent = name;
   });
-  imgZoomClose.addEventListener("click", function () {
-    closePopup(popupZoom);
-  });
 
   cardElement.querySelector(".element__info").textContent = name;
   image.src = link;
@@ -126,13 +126,8 @@ function addCard(name, link) {
 }
 formElementAdd.addEventListener("submit", function (evt) {
   evt.preventDefault();
-  const descriptionAddForm = popupAdd.querySelector(
-    ".popup__form-field[name=placeName-input]"
-  );
-  const linkAddForm = popupAdd.querySelector(
-    ".popup__form-field[name=placeUrl-input]"
-  );
+
   elements.prepend(addCard(descriptionAddForm.value, linkAddForm.value));
   closePopup(popupAdd);
-  addElementForm.reset();
+  formElementAdd.reset();
 });
