@@ -2,15 +2,15 @@
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-weight: normal;
   font-size: 14px;
+  position: relative;
   line-height: 17px;
   max-width: 358px;
   border: 0;
+  box-sizing: border-box;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding-bottom: 13px;
 }
-.popup__form-field:first-child {
-  margin-bottom: 30px;
-}
+
 .popup__form-item::placeholder {
   color: #000000;
 }
