@@ -13,5 +13,5 @@
 }
 .profile__avatar-change-button:hover {
   background-color: rgba(0, 0, 0, 0.8);
-  background-image: url(../../../images/change-arrow.svg);
+  background-image: url(../../../src/images/change-arrow.svg);
 }

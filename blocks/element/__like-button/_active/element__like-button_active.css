@@ -1,5 +1,5 @@
 .element__like-button_active {
   opacity: 1;
   background-color: #000000;
-  background: url(../../../../images/heart-filled.svg) center no-repeat;
+  background: url(../../../../src/images/heart-filled.svg) center no-repeat;
 }

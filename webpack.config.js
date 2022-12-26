@@ -25,8 +25,8 @@ module.exports = {
         exclude: "/node_modules/",
       },
       {
-        test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/, //Выбираем все фалйы с расирением изображений и шрифтов
-        type: "asset/resource", // Переносим без изменений формата
+        test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
+        type: "asset/resource",
       },
       {
         test: /\.css$/,
