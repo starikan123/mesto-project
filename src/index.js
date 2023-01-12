@@ -1,7 +1,13 @@
 "use strict";
 
 import "./index.css";
-import { openPopup, closePopup, escHandler } from "./components/modal.js";
+import {
+  openPopup,
+  closePopup,
+  escHandler,
+  popupImage,
+  popupAdd,
+} from "./components/modal.js";
 import {
   getInitialCards,
   getUserInformation,
@@ -12,9 +18,9 @@ import {
   updateUserInformation,
   switchLoadingMesg,
 } from "./components/utils.js";
-import { renderInitialCards, popupImage, popupAdd } from "./components/card.js";
+import { renderInitialCards } from "./components/card.js";
 import { enableValidation } from "./components/validate.js";
-export const elements = document.querySelector(".elements");
+import { elements, enableValidationConstants } from "./components/constants.js";
 const profile = document.querySelector(".profile");
 const profileEditButton = profile.querySelector(".profile__edit-button");
 const popupEdit = document.querySelector(".popup_profile-edit");
@@ -57,7 +63,6 @@ closeButtons.forEach((button) => {
   button.addEventListener("click", () => closePopup(popup));
 });
 
-document.addEventListener("keyup", escHandler);
 profileEditButton.addEventListener("click", function () {
   openPopup(popupEdit);
 });
@@ -118,12 +123,4 @@ popupAvatarChange.addEventListener("submit", (evt) => {
     });
 });
 
-const enableValidationConstants = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__form-field",
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_notActive",
-  inputErrorClass: "popup__eror-masage",
-  errorClass: "popup__eror-masage_active",
-};
 enableValidation(enableValidationConstants);

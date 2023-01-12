@@ -1,14 +1,14 @@
 "use strict";
 
-import { openPopup, closePopup } from "./modal.js";
+import { openPopup, closePopup, popupImage, popupAdd } from "./modal.js";
 import { deleteCard, putLike, deleteLike, postNewCard } from "./api.js";
 import { switchLoadingMesg } from "./utils.js";
-import { elements } from "./../index.js";
-export const popupImage = document.querySelector(".profile__avatar");
-export const popupAdd = document.querySelector(".popup_card-add");
+import { elements } from "./constants.js";
+
 const popupZoom = document.querySelector(".popup_image-zoom");
 const cardTemplate = document.querySelector("#card-template").content;
 const popupCaption = document.querySelector(".popup__caption");
+const popupPicture = document.querySelector(".popup__image");
 const formElementAdd = document.querySelector("#popupProfileAddButton");
 const descriptionAddForm = popupAdd.querySelector(
   ".popup__form-field[name=placeName-input]"
@@ -91,8 +91,8 @@ export function addCard(name, link, OWNERID, myId, likes, cardId) {
   const image = cardElement.querySelector(".element__image");
   image.addEventListener("click", function () {
     openPopup(popupZoom);
-    popupImage.src = link;
-    popupImage.alt = `Фото ${name}`;
+    popupPicture.src = link;
+    popupPicture.alt = `Фото ${name}`;
     popupCaption.textContent = name;
   });
 

@@ -1,24 +1,26 @@
+import { enableValidationConstants } from "./constants.js";
+
 function showInputError(form, input, errorMessage) {
   const error = form.querySelector(`.${input.id}-error`);
-  error.classList.add("popup__eror-masage");
+  error.classList.add(enableValidationConstants.inputErrorClass);
   if (input.value === "") {
     error.textContent = "Вы пропустили это поле";
   } else {
     error.textContent = errorMessage;
   }
-  error.classList.add("popup__eror-masage_active");
+  error.classList.add(enableValidationConstants.errorClass);
 }
 
 function hideInputError(form, input) {
   const error = form.querySelector(`.${input.id}-error`);
-  error.classList.remove("popup__eror-masage");
+  error.classList.add(enableValidationConstants.inputErrorClass);
   error.textContent = "";
-  error.classList.remove("popup__eror-masage_active");
-  input.classList.remove("popup__form-field_type_error");
+  error.classList.add(enableValidationConstants.errorClass);
+  input.classList.remove(enableValidationConstants.inputErrorClass);
 }
 
 function checkInputValidity(form, input) {
-  if (!input.validity.valid) {
+  if (!input.validity.valid && input.value !== "") {
     showInputError(form, input, input.validationMessage);
   } else {
     hideInputError(form, input);
@@ -32,8 +34,15 @@ function hasInvalidInput(inputs) {
 }
 
 function toggleSubmitButtonState(form, buttonSelector, inactiveClass) {
+  const inputs = form.querySelectorAll(enableValidationConstants.inputSelector);
   const button = form.querySelector(buttonSelector);
-  if (hasInvalidInput(form.querySelectorAll(".popup__form-field"))) {
+  let isInputEmpty = false;
+  inputs.forEach((input) => {
+    if (input.value === "") {
+      isInputEmpty = true;
+    }
+  });
+  if (hasInvalidInput(inputs) || isInputEmpty) {
     button.classList.add(inactiveClass);
     button.setAttribute("disabled", true);
   } else {
@@ -43,7 +52,9 @@ function toggleSubmitButtonState(form, buttonSelector, inactiveClass) {
 }
 
 function setEventListeners(form, buttonSelector, inactiveClass) {
-  const inputs = Array.from(form.querySelectorAll(".popup__form-field"));
+  const inputs = Array.from(
+    form.querySelectorAll(enableValidationConstants.inputSelector)
+  );
 
   inputs.forEach((input) => {
     input.addEventListener("input", () => {
