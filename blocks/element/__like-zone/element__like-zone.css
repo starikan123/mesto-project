@@ -1,0 +1,9 @@
+.element__like-zone {
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  display: flex;
+  grid-area: description;
+  justify-self: end;
+  padding-right: 10px;
+}
