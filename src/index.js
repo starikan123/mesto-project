@@ -20,7 +20,7 @@ import {
 } from "./components/utils.js";
 import { renderInitialCards } from "./components/card.js";
 import { enableValidation } from "./components/validate.js";
-import { elements, enableValidationConstants } from "./components/constants.js";
+import { elements } from "./components/constants.js";
 const profile = document.querySelector(".profile");
 const profileEditButton = profile.querySelector(".profile__edit-button");
 const popupEdit = document.querySelector(".popup_profile-edit");
