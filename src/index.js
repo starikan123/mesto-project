@@ -123,4 +123,12 @@ popupAvatarChange.addEventListener("submit", (evt) => {
     });
 });
 
-enableValidation(enableValidationConstants);
+const config = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__form-field",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_notActive",
+  inputErrorClass: "popup__eror-masage",
+  errorClass: "popup__eror-masage_active",
+};
+enableValidation(config);
