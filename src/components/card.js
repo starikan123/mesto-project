@@ -18,24 +18,15 @@ const linkAddForm = popupAdd.querySelector(
   ".popup__form-field[name=placeUrl-input]"
 );
 
-function hasMyLike(myId, likes) {
-  const matchingLikes = likes.filter((obj) => {
-    return obj["_id"] == myId;
-  });
-  return matchingLikes.length === 1;
-}
-
 export function changeLike(initialCard, likeCount, me) {
   const likeButton = initialCard.querySelector(".element__like-button");
   const likesCounter = initialCard.querySelector(".element__like-counter");
   if (likeCount.length !== 0) {
-    likeCount.forEach((user) => {
-      if (user._id === me.id) {
-        likeButton.classList.add("element__like-button_active");
-      } else {
-        likeButton.classList.add("element__like-button_active");
-      }
-    });
+    if (likeCount.some((user) => user._id === me.id)) {
+      likeButton.classList.add("element__like-button_active");
+    } else {
+      likeButton.classList.remove("element__like-button_active");
+    }
   } else {
     likeButton.classList.remove("element__like-button_active");
   }
@@ -48,9 +39,13 @@ export function createInitialCard(card, me) {
   const cardImage = cardElement.querySelector(".element__image");
   const likeButton = cardElement.querySelector(".element__like-button");
   const deleteBtn = cardElement.querySelector(".element__delete-button");
+  const likesCounter = cardElement.querySelector(".element__like-counter");
+
   cardImage.src = card.link;
   cardImage.alt = card.name;
   cardInfo.textContent = card.name;
+  likesCounter.textContent = card.likes.length;
+
   cardImage.addEventListener("click", () => {
     popupPicture.src = cardImage.src;
     popupPicture.alt = cardInfo.textContent;
@@ -65,7 +60,12 @@ export function createInitialCard(card, me) {
       handleDislikeCard(cardElement, card, me);
     }
   });
-  changeLike(cardElement, card.likes, me);
+
+  card.likes.forEach((user) => {
+    if (user._id === me.id) {
+      likeButton.classList.add("element__like-button_active");
+    }
+  });
 
   if (me.id === card.owner._id) {
     deleteBtn.classList.add("element__delete-button_active");
@@ -84,69 +84,3 @@ export function createInitialCard(card, me) {
   cardElement.dataset.id = card._id;
   return cardElement;
 }
-
-// export function addCard(
-//   name,
-//   link,
-//   OWNERID,
-//   myId,
-//   likes,
-//   cardId,
-//   hundleLikeCard
-// ) {
-//   const cardElement = cardTemplate.querySelector(".element").cloneNode(true);
-
-//   likesCounter.textContent = likes.length;
-//   if (hasMyLike(myId, likes)) {
-//   }
-//   likeButton.addEventListener("click", (evt) => {
-//     if (hasMyLike(myId, likes)) {
-//       deleteLike(cardId)
-//         .then((updatedCard) => {
-//           likesCounter.textContent = updatedCard["likes"].length;
-//           evt.target.classList.toggle("element__like-button_active");
-//           likes = updatedCard["likes"];
-//         })
-//         .catch((error) => {
-//           console.log(`Что-то пошло не так. Ошбика: ${error}`);
-//         });
-//     } else {
-//       putLike(cardId)
-//         .then((updatedCard) => {
-//           likesCounter.textContent = updatedCard["likes"].length;
-//           evt.target.classList.toggle("element__like-button_active");
-//           likes = updatedCard["likes"];
-//         })
-//         .catch((error) => {
-//           console.log(`Что-то пошло не так. Ошбика: ${error}`);
-//         });
-//     }
-//   });
-
-//   const deleteBtn = cardElement.querySelector(".element__delete-button");
-//   if (myId == OWNERID) {
-//     deleteBtn.addEventListener("click", function () {
-//       const newCard = deleteBtn.closest(".element");
-//       deleteCard(cardId)
-//         .then(() => newCard.remove())
-//         .catch((err) => {
-//           console.log(`Что-то пошло не так. Ошбика: ${err}`);
-//         });
-//     });
-//   } else {
-//     deleteBtn.remove();
-//   }
-
-//   const image = cardElement.querySelector(".element__image");
-//   image.addEventListener("click", function () {
-//     openPopup(popupZoom);
-//     popupPicture.src = link;
-//     popupPicture.alt = `Фото ${name}`;
-//     popupCaption.textContent = name;
-//   });
-
-//   cardElement.querySelector(".element__info").textContent = name;
-//   image.src = link;
-//   image.setAttribute("alt", `Фото ${name}`);
-//   return cardElement;
-// }

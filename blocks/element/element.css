@@ -1,7 +1,7 @@
 .element {
   grid-template-areas:
     "image image"
-    "description description";
+    "description like-zone";
   position: relative;
   overflow: hidden;
   border-radius: 10px;
