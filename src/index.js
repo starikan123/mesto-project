@@ -37,6 +37,7 @@ import {
   popupCardAdd,
   popupChangeForm,
   allPopup,
+  profile,
   profileAddButton,
   nameInput,
   jobInput,
@@ -75,7 +76,7 @@ export async function bringNewCard(evt) {
     const card = await postNewCard(placeNameInput.value, placeUrlInput.value);
     profileAdd.reset();
 
-    elements.prepend(createInitialCard(card, profile)); // теперь я не передаю весь дом элемент, а аргумент profile.
+    elements.prepend(createInitialCard(card, profile));
     closePopup(popupCardAdd);
   } catch (err) {
     console.error(err);
@@ -180,7 +181,7 @@ const config = {
   inputSelector: ".popup__form-field",
   submitButtonSelector: ".popup__button",
   inactiveButtonClass: "popup__button_notActive",
-  inputErrorClass: "popup__eror-masage",
+  inputErrorClass: "popup__form-field_type_error",
   errorClass: "popup__eror-masage_active",
 };
 enableValidation(config);
