@@ -22,41 +22,36 @@ import {
   switchLoadingMesg,
 } from "./components/utils.js";
 import {
-  addCard,
   popupPicture,
   popupCaption,
   changeLike,
   createInitialCard,
 } from "./components/card.js";
 import { enableValidation } from "./components/validate.js";
-import { elements, profile } from "./components/constants.js";
-
-const profileEditButton = profile.querySelector(".profile__edit-button");
-const popupEdit = document.querySelector(".popup_profile-edit");
-const popupChange = document.querySelector("#avatar-change");
-const profileAdd = document.querySelector("#popupProfileAddButton");
-const popupCardAdd = document.querySelector(".popup_card-add");
-const popupChangeForm = document.querySelector(".popup_form_layout");
-const allPopup = Array.from(document.querySelectorAll(".popup"));
-const profileAddButton = profile.querySelector(".profile__add-button");
-const nameInput = document.querySelector("#profile__name-input");
-const jobInput = document.querySelector("#profile__description-input");
-const inputName = document.querySelector("#profile__name");
-const inputDescription = document.querySelector("#profile__description");
-const placeNameInput = document.querySelector("#placeName-input");
-const placeUrlInput = document.querySelector("#placeUrl-input");
-const avatarChangeBtn = document.querySelector(
-  ".profile__avatar-change-button"
-);
-const popupZoom = document.querySelector(".popup_image-zoom");
-const avatarImage = document.querySelector(".profile__avatar");
-const popupAvatarChange = document.querySelector("#avatar-change");
-const avatarChangeInput = popupChangeForm.querySelector(
-  ".popup__form-field[name=placeAvatar-change-input]"
-);
-
-const addCardSubmitBtn = document.querySelector("#addCardSubmitBtn");
-const closeButtons = document.querySelectorAll(".popup__close-button");
+import {
+  elements,
+  profileEditButton,
+  popupEdit,
+  popupChange,
+  profileAdd,
+  popupCardAdd,
+  popupChangeForm,
+  allPopup,
+  profileAddButton,
+  nameInput,
+  jobInput,
+  inputName,
+  inputDescription,
+  placeNameInput,
+  placeUrlInput,
+  avatarChangeBtn,
+  popupZoom,
+  avatarImage,
+  popupAvatarChange,
+  avatarChangeInput,
+  addCardSubmitBtn,
+  closeButtons,
+} from "./components/constants.js";
 
 Promise.all([getUserInformation(), getInitialCards()])
   .then(([me, cards]) => {
@@ -79,7 +74,8 @@ export async function bringNewCard(evt) {
     addCardSubmitBtn.textContent = "Создание...";
     const card = await postNewCard(placeNameInput.value, placeUrlInput.value);
     profileAdd.reset();
-    elements.prepend(createInitialCard(card, profile));
+
+    elements.prepend(createInitialCard(card, profile)); // теперь я не передаю весь дом элемент, а аргумент profile.
     closePopup(popupCardAdd);
   } catch (err) {
     console.error(err);

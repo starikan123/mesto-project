@@ -50,15 +50,18 @@
               type="url"
               class="popup__form-field"
               name="placeAvatar-change-input"
-              id="popup__avatar-input"
+              id="placeAvatar-change-input"
               placeholder="Ссылка на новый аватар"
               minlength="2"
               maxlength="40"
-              pattern="^[a-zA-Zа-яА-ЯёЁ\s-]+$"
-              data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
+              pattern="https?://.+"
+              data-error-message="Разрешены только латинские, кириллические буквы,
+            знаки дефиса и пробелы"
               required
             />
-            <span class="popup__eror-masage popup__avatar-input-error"></span>
+            <span
+              class="popup__eror-masage placeAvatar-change-input-error"
+            ></span>
 
             <button class="popup__button" type="submit">Сохранить</button>
           </fieldset>
@@ -184,11 +187,12 @@
         <img class="element__image" src="#" />
         <div class="element__description">
           <h2 class="element__info"></h2>
+          <div class="element__like-zone">
+            <button class="element__like-button" type="button"></button>
+            <p class="element__like-counter">0</p>
+          </div>
         </div>
-        <div class="element__like-zone">
-          <button class="element__like-button" type="button"></button>
-          <p class="element__like-counter">0</p>
-        </div>
+
         <button class="element__delete-button"></button>
       </li>
     </template>

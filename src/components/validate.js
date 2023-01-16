@@ -17,8 +17,6 @@ function showInputError(
 
 function hideInputError(form, input, { inputErrorClass, errorClass }) {
   const error = form.querySelector(`.${input.id}-error`);
-
-  error.classList.remove(inputErrorClass);
   error.textContent = "";
   error.classList.remove(errorClass);
   input.classList.remove(inputErrorClass);
@@ -26,17 +24,24 @@ function hideInputError(form, input, { inputErrorClass, errorClass }) {
 }
 
 function checkInputValidity(form, input, { inputErrorClass, errorClass }) {
-  input.addEventListener("focus", () => {
-    input.setAttribute("data-touched", true);
-  });
-  if (input.getAttribute("data-touched") && !input.validity.valid) {
-    showInputError(form, input, input.validationMessage, {
-      inputErrorClass,
-      errorClass,
-    });
-  } else {
-    hideInputError(form, input, { inputErrorClass, errorClass });
-  }
+  input.addEventListener(
+    "input",
+    (inactiveButtonClass, submitButtonSelector, inputSelector) => {
+      if (!input.validity.valid) {
+        showInputError(form, input, input.validationMessage, {
+          inputErrorClass,
+          errorClass,
+        });
+      } else {
+        hideInputError(form, input, { inputErrorClass, errorClass });
+      }
+      toggleSubmitButtonState(form, {
+        submitButtonSelector,
+        inactiveButtonClass,
+        inputSelector,
+      });
+    }
+  );
 }
 function hasInvalidInput(inputs) {
   return Array.prototype.some.call(inputs, function (input) {
@@ -91,6 +96,9 @@ function setEventListeners(
   });
   form.addEventListener("submit", (event) => {
     event.preventDefault();
+    inputs.forEach((input) => {
+      checkInputValidity(form, input, { errorClass, inputErrorClass });
+    });
   });
 }
 
