@@ -62,7 +62,7 @@ Promise.all([getUserInformation(), getInitialCards()])
     avatarImage.src = me.avatar;
 
     cards.forEach((card) => {
-      elements.appendChild(createInitialCard(card, profile));
+      elements.appendChild(createInitialCard(card, profile.id));
     });
   })
   .catch((err) => {
@@ -76,7 +76,7 @@ export async function bringNewCard(evt) {
     const card = await postNewCard(placeNameInput.value, placeUrlInput.value);
     profileAdd.reset();
 
-    elements.prepend(createInitialCard(card, profile));
+    elements.prepend(createInitialCard(card, profile.id));
     closePopup(popupCardAdd);
   } catch (err) {
     console.error(err);

@@ -18,11 +18,11 @@ const linkAddForm = popupAdd.querySelector(
   ".popup__form-field[name=placeUrl-input]"
 );
 
-export function changeLike(initialCard, likeCount, me) {
+export function changeLike(initialCard, likeCount, userId) {
   const likeButton = initialCard.querySelector(".element__like-button");
   const likesCounter = initialCard.querySelector(".element__like-counter");
   if (likeCount.length !== 0) {
-    if (likeCount.some((user) => user._id === me.id)) {
+    if (likeCount.some((user) => user._id === userId)) {
       likeButton.classList.add("element__like-button_active");
     } else {
       likeButton.classList.remove("element__like-button_active");
@@ -33,7 +33,7 @@ export function changeLike(initialCard, likeCount, me) {
   likesCounter.textContent = likeCount.length;
 }
 
-export function createInitialCard(card, me) {
+export function createInitialCard(card, userId) {
   const cardElement = cardTemplate.querySelector(".element").cloneNode(true);
   const cardInfo = cardElement.querySelector(".element__info");
   const cardImage = cardElement.querySelector(".element__image");
@@ -55,19 +55,19 @@ export function createInitialCard(card, me) {
 
   likeButton.addEventListener("click", () => {
     if (!likeButton.classList.contains("element__like-button_active")) {
-      handleLikeCard(cardElement, card, me);
+      handleLikeCard(cardElement, card, userId);
     } else {
-      handleDislikeCard(cardElement, card, me);
+      handleDislikeCard(cardElement, card, userId);
     }
   });
 
   card.likes.forEach((user) => {
-    if (user._id === me.id) {
+    if (user._id === userId) {
       likeButton.classList.add("element__like-button_active");
     }
   });
 
-  if (me.id === card.owner._id) {
+  if (userId === card.owner._id) {
     deleteBtn.classList.add("element__delete-button_active");
     deleteBtn.addEventListener("click", function () {
       const newCard = deleteBtn.closest(".element");
