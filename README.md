@@ -15,4 +15,5 @@
 Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
 
 Github партнера: https://github.com/MADeit0/mesto-project
+
 Имэйл партнера: k.n.u.c.k.l.e.s@yandex.ru
